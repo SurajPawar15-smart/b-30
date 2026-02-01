@@ -7,6 +7,32 @@
       </div>
       <div class="card-body">
         <!-- Location list content here -->
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Sr.No</th>
+              <th>LocationName</th>
+              <th>Code</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for (item of locationArray; track $index) {
+            <tr>
+              <td>{{$index+1}}</td>
+              <td>{{ item.locationName }}</td>
+              <td>{{ item.code }}</td>
+              <td>
+                <button class="btn btn-success p-2 me-2"
+                  (click)="onEdit(item)">Edit</button>
+                <button class="btn btn-danger p-2 "
+                  (click)="onDelete(item.locationId)">Delete</button>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -33,15 +59,24 @@
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-12 text-end">
+        <div class="row pt-3">
+          <div class="col-6 ">
             <button type="reset" class="btn btn-secondary me-2">
               Reset Form
             </button>
+          </div>
+          <div class="col-6 ">
+            @if(newLocationObj.locationId==0){
             <button type="submit" class="btn btn-success"
               (click)="onSaveLocation()">
               Save Location
             </button>
+            }@else{
+            <button type="submit" class="btn btn-warning"
+              (click)="onUpdate()">
+              Update Location
+            </button>
+            }
           </div>
         </div>
       </div>
