@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './user.css',
 })
 export class User {
-  private courseName: string = 'Samsung';
+  public courseName: string = 'Samsung';
   constructor() {
     console.log(this.courseName);
   }
