@@ -1,0 +1,27 @@
+<div class="row mt-4">
+  <div class="col-3">
+    @if(isDiv1Visible){
+    <div class="bg-success p-3">
+      Div-01
+    </div>
+    }
+  </div>
+  <div class="col-3">
+    @if(div2Status=="Show"){
+    <div class="bg-danger p-3">Div 2</div>
+    }
+  </div>
+  <div class="col-3">
+    {{div2Status}}
+  </div>
+</div>
+
+<div class="row pt-3">
+  <div class="col-3">
+    <button class="btn btn-primary p-3" (click)="hideDiv()">Hide</button>
+    <button class="btn btn-secondary p-3" (click)="showDiv()">Show</button>
+  </div>
+  <div class="col-3">
+    <button class="btn btn-success" (click)="toggleDiv2()">Toggle</button>
+  </div>
+</div>
