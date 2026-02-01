@@ -1,27 +1,196 @@
 <div class="row mt-4">
   <div class="col-3">
-    @if(isDiv1Visible){
+    @if (isDiv1Visible) {
     <div class="bg-success p-3">
       Div-01
     </div>
     }
   </div>
+
   <div class="col-3">
-    @if(div2Status=="Show"){
-    <div class="bg-danger p-3">Div 2</div>
+    @if (div2Status === 'Show') {
+    <div class="bg-danger p-3">
+      Div-02
+    </div>
     }
   </div>
+
   <div class="col-3">
-    {{div2Status}}
+    @if (isDiv3Visible) {
+    <div class="p-3 bg-warning">
+      Div-03
+    </div>
+    } @else {
+    <p>Div Hidden</p>
+    }
   </div>
 </div>
-
+<br><br>
 <div class="row pt-3">
   <div class="col-3">
-    <button class="btn btn-primary p-3" (click)="hideDiv()">Hide</button>
-    <button class="btn btn-secondary p-3" (click)="showDiv()">Show</button>
+    <button class="btn btn-primary me-2" (click)="hideDiv()">Hide</button>
+    <button class="btn btn-secondary" (click)="showDiv()">Show</button>
+  </div>
+
+  <div class="col-3">
+    <button class="btn btn-success" (click)="toggleDiv2()">Toggle Div2</button>
+  </div>
+
+  <div class="col-3">
+    <button class="btn btn-primary" (click)="toggleDiv3()">Toggle Div3</button>
+  </div>
+</div>
+<br><br>
+
+<div class="row">
+  <div class="col-3">
+    <label for="daystart">Days :</label>
+    <input type="text" [(ngModel)]="startingCharDayName" id="daystart">
   </div>
   <div class="col-3">
-    <button class="btn btn-success" (click)="toggleDiv2()">Toggle</button>
+    {{startingCharDayName}}
+    @if(startingCharDayName =='mon'){
+    <span class="text-success">Monday</span>
+    }
+    @else if(startingCharDayName=='tue'){
+    <span class="text-success">Tuesday</span>
+    }
+    @else if(startingCharDayName=='wed'){
+    <span class="text-success">Wednesday</span>
+    }
+    @else if(startingCharDayName=='thu'){
+    <span class="text-success">Thursday</span>
+    }
+    @else if(startingCharDayName=='fri'){
+    <span class="text-success">Friday</span>
+    }
+    @else if(startingCharDayName=='sat'){
+    <span class="text-success">Saturday</span>
+    }
+    @else if(startingCharDayName=='sun'){
+    <span class="text-success">Sunday</span>
+    }
+    @else{
+    @if(startingCharDayName ==""){
+    <span class="text-warning">Enter day properly</span>
+    }@else{
+    <span class="text-danger">Wrong Day</span>
+    }
+    }
+  </div>
+
+  <div class="col-3">
+    <label for="daystart">Days :</label>
+    <input type="text" [(ngModel)]="startingCharDayName" id="daystart">
+  </div>
+  <div class="col-3">
+    @switch(startingCharDayName){
+    @case('mon'){
+    <span class="text-success">Monday</span>
+    }
+    @case('tue'){
+    <span class="text-success">Tuesday</span>
+    }
+    @case('wed'){
+    <span class="text-success">Wednesday</span>
+    }
+    @case('thu'){
+    <span class="text-success">Thursday</span>
+    }
+    @case('fri'){
+    <span class="text-success">Friday</span>
+    }
+    @case('sat'){
+    <span class="text-success">Saturday</span>
+    }
+    @case('sun'){
+    <span class="text-success">Sunday</span>
+    }
+    @default{
+    @if(startingCharDayName ==""){
+    <span class="text-warning">Enter day properly</span>
+    }@else{
+    <span class="text-danger">Wrong Day</span>
+    }
+    }
+
+    }
+  </div>
+</div>
+<br><br>
+<div class="row">
+  <div class="col-6">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Sr</th>
+          <th>Name</th>
+          <th>Grade</th>
+          <th>City</th>
+          <th>Hobbies</th>
+          <th>Mobile</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of studentList; track $index) {
+        <tr>
+          <td>{{ $index + 1 }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.grade }}</td>
+          <td>{{ item.city }}</td>
+          <td>{{ item.hobbies }}</td>
+          <td>{{ item.mobile }}</td>
+        </tr>
+        }@if (studentList.length === 0) {
+        <tr>
+          <td colspan="6" class="text-center">No records found</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  <div class="col-3">
+    <ul>
+      @for(cityName of cityList;track $index){
+      <li>{{cityName}}</li>
+      }@if (cityList.length === 0) {
+      <p>No cities available</p>
+      }
+    </ul>
+  </div>
+  <div class="col-3">
+    <ul>
+      @for(cityName of cityList;track $index){
+      <button class="btn btn-primary m-1 p-3"> {{cityName}}</button>
+      }@if (cityList.length === 0) {
+      <p>No cities available</p>
+      }
+    </ul>
+  </div>
+
+</div>
+<div class="row">
+  <div class="col-12">
+    <div class="row">
+      @for (item of studentList; track $index) {
+      <div class="col-3 mt-3">
+        <div class="card h-100">
+          <div class="card-body">
+            <h4 class="card-title">{{ item.name }}</h4>
+            <p class="card-text">
+              {{ item.city }} | {{ item.hobbies }} | {{ item.mobile }}
+            </p>
+            <!-- <a class="card-link" (click)="editStudent(item)">Edit</a>
+            <a class="card-link text-danger"
+              (click)="deleteStudent(item)">Delete</a> -->
+            <a class="card-link" role="button">Edit</a>
+            <a class="card-link text-danger" role="button">Delete</a>
+          </div>
+        </div>
+      </div>
+      }@if (studentList.length === 0) {
+      <p>No students available</p>
+      }
+    </div>
   </div>
 </div>

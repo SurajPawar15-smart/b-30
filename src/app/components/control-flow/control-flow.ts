@@ -1,15 +1,50 @@
 import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-control-flow',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './control-flow.html',
   styleUrl: './control-flow.css',
 })
 export class ControlFlow {
   isDiv1Visible: boolean = false;
   div2Status: string = 'Show';
+  isDiv3Visible: boolean = false;
+  startingCharDayName = '';
+  cityList: string[] = ['Pune', 'Mumbai', 'Delhi', 'Bangalore', 'Hyderabad'];
+  studentList = [
+    {
+      name: 'Rahul Sharma',
+      grade: 'A',
+      city: 'Pune',
+      hobbies: 'Reading, Cricket',
+      mobile: '9876543210',
+    },
+    {
+      name: 'Anita Patil',
+      grade: 'B',
+      city: 'Mumbai',
+      hobbies: 'Drawing, Music',
+      mobile: '9123456789',
+    },
+    {
+      name: 'Suresh Kumar',
+      grade: 'A+',
+      city: 'Delhi',
+      hobbies: 'Coding, Chess',
+      mobile: '9988776655',
+    },
+    {
+      name: 'Suraj Kumar',
+      grade: 'A+',
+      city: 'Pune',
+      hobbies: 'Singing, Chess',
+      mobile: '9988776655',
+    },
+  ];
+
   hideDiv() {
     this.isDiv1Visible = false;
   }
@@ -23,5 +58,9 @@ export class ControlFlow {
     //   this.div2Status = 'Show';
     // }
     this.div2Status = this.div2Status == 'Show' ? 'Hide' : 'Show';
+  }
+  toggleDiv3() {
+    //this.isDiv3Visible = this.isDiv3Visible == true ? false : true;
+    this.isDiv3Visible = !this.isDiv3Visible;
   }
 }
