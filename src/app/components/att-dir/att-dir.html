@@ -1,0 +1,106 @@
+<div class="row m-3">
+  <div class="col-3">
+    <div class="p-3" [ngClass]="div1BgClassName">
+      Div 1
+    </div>
+    <div class="col-3 m-3">
+      <div class="p-3" [ngClass]="isChecked == true?'bg-success':'bg-danger'">
+        Div-2
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="p-3" [ngClass]="'ng-secondary'">
+        Div 3
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="p-3" [ngClass]="num1 == num2 ?'bg-success':'bg-warning'">
+        Div 3
+      </div>
+    </div>
+  </div>
+  <br><br>
+  <div class="row">
+    <div class="col-4">
+      <button class="btn btn-success" (click)="toggleDiv1">Toggle</button>
+    </div>
+    <div class="col-4">
+      <label for="isChecked">CheckBox :</label>
+      <input type="checkbox" [(ngModel)]="isChecked" id="isChecked">
+    </div>
+    <div class="col-4">
+      <label for="num1">Num1 :</label>
+      <input type="text" [(ngModel)]="num1" id="num1"><br>
+      <label for="num2">Num2 :</label>
+      <input type="text" [(ngModel)]="num2" id="num2">
+    </div>
+  </div>
+  <br><br>
+  <div class="row">
+    <div class="col-6">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Sr</th>
+            <th>Name</th>
+            <th>Grade</th>
+            <th>City</th>
+            <th>Mobile</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (item of studentList; track $index) {
+          <tr>
+            <td>{{ $index + 1 }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.grade }}</td>
+            <td>{{ item.city }}</td>
+            <td>{{ item.mobile }}</td>
+
+            <td>
+              <span
+                [ngClass]="item.isActive ? 'text-success' : 'text-danger'">
+                {{ item.isActive ? 'Active' : 'Inactive' }}
+              </span>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<br><br>
+<div class="row m-3">
+  <!-- Inline Style -->
+  <div class="col-3">
+    <div class="p-3" style="color:red; width:100px;">
+      Div 1
+    </div>
+  </div>
+
+  <!-- ngStyle with variable -->
+  <div class="col-3">
+    <div class="p-3"
+      [ngStyle]="{'color': 'lightbrown', 'background-color': backColor}">
+      Div 2
+    </div>
+  </div>
+
+  <!-- ngClass with object -->
+  <div class="col-3">
+    <div class="p-3" [ngClass]="myCssObj">
+      Div 3
+    </div>
+  </div>
+
+  <!-- Conditional ngStyle -->
+  <div class="col-3">
+    <div class="p-3"
+      [ngStyle]="{ color: isChecked ? 'lightgreen' : 'lightblue' }">
+      Div 4
+    </div>
+  </div>
+</div>

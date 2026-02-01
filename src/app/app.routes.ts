@@ -5,6 +5,7 @@ import { DataBinding } from './components/data-binding/data-binding';
 import { EventBinding } from './components/event-binding/event-binding';
 import { Variables } from './components/variables/variables';
 import { ControlFlow } from './components/control-flow/control-flow';
+import { AttDir } from './components/att-dir/att-dir';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'admin', pathMatch: 'full' },
@@ -14,4 +15,5 @@ export const routes: Routes = [
   { path: 'dataBinding', component: DataBinding },
   { path: 'eventBinding', component: EventBinding },
   { path: 'controlFlow', component: ControlFlow },
+  { path: 'attDir', component: AttDir },
 ];
