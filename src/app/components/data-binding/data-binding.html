@@ -1,1 +1,41 @@
-<p>data-binding works!</p>
+<div class="row">
+  <div class="col-3">
+    courseName =>{{courseName}}
+  </div>
+  <div class="col-3">
+    courseDuration =>{{courseDuration}}
+  </div>
+  <div class="col-3">
+    <p><span>latestVersion => </span>
+      <span>{{latestVersion}}</span></p>
+  </div>
+  <div class="col-3">
+    <label for="text">courseName</label>
+    <input type="text" id="text" value="{{courseName}}">
+  </div>
+  <div class="col-3">
+    <label for="ph">myPlaceholdertext</label>
+    <input type="text" id="ph" placeholder="{{myPlaceholdertext}}"
+      value="{{courseName}}">
+  </div>
+  <div class="col-3">
+    <label for="cb">isActive</label>
+    <input type="checkbox" id='cb' [checked]="isActive" />
+  </div>
+</div>
+<div class="row">
+  <div class="col-3">
+    <label for="ph">myPlaceholdertext</label>
+    <input type="text" id='ph' [placeholder]="myPlaceholdertext"
+      [value]="courseDuration">
+  </div>
+  <div class="col-3">
+    <label for="iT">inputType</label>
+    <input [type]="inputType" id="iT">
+  </div>
+  <div class="col-3">
+    <div [class]='courseName'>
+      div-111
+    </div>
+  </div>
+</div>
