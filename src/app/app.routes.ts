@@ -7,6 +7,7 @@ import { Variables } from './components/variables/variables';
 import { ControlFlow } from './components/control-flow/control-flow';
 import { AttDir } from './components/att-dir/att-dir';
 import { OldAngular } from './components/old-angular/old-angular';
+import { GetApi } from './components/get-api/get-api';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'admin', pathMatch: 'full' },
@@ -18,4 +19,5 @@ export const routes: Routes = [
   { path: 'controlFlow', component: ControlFlow },
   { path: 'attDir', component: AttDir },
   { path: 'oldAng', component: OldAngular },
+  { path: 'getApi', component: GetApi },
 ];

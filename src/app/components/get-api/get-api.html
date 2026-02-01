@@ -1,0 +1,57 @@
+<div class="row m-2">
+  <div class="col-12">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>UserName</th>
+          <th>Email</th>
+          <th>Address</th>
+          <th>Phone</th>
+          <th>Website</th>
+          <th>Company</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (item of userList; track $index) {
+        <tr>
+          <td>{{ item.username }}</td>
+          <td>{{ item.email }}</td>
+          <td>{{ item.address.city }} - {{ item.address.zipcode }}</td>
+          <td>{{ item.phone }}</td>
+          <td>{{ item.website }}</td>
+          <td>{{ item.company.name }}</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+<br><br>
+<div class="row">
+  <div class="col-4">
+    <button class="btn btn-success mb-2" (click)="getTodoItems()">
+      Get To Do Items
+    </button>
+
+    <ul>
+      <li *ngFor="let item of todoItemList">
+        {{ item.title }} —
+        <span
+          [ngClass]="item.completed ? 'text-success' : 'text-danger'">
+          {{ item.completed ? 'Completed' : 'Not Completed' }}
+        </span>
+      </li>
+    </ul>
+  </div>
+  <div class="col-4">
+    <button class="btn btn-success mb-2" (click)="getAllLocations()">
+      Get Location
+    </button>
+    <label for="mylocation">-</label>
+    <select name="mylocation" id="mylocation">
+      <option
+        *ngFor="let item of locationArray">{{item.locationName}}</option>
+    </select>
+  </div>
+</div>
