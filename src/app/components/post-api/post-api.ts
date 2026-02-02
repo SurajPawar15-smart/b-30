@@ -1,10 +1,11 @@
+import { NgIf } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-post-api',
-  imports: [FormsModule],
+  imports: [FormsModule, NgIf],
   templateUrl: './post-api.html',
   styleUrl: './post-api.css',
 })

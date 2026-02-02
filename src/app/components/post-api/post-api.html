@@ -1,12 +1,12 @@
-<div class="row mt-3">
-  <!-- Location List -->
+<!-- <div class="row mt-3">
+
   <div class="col-6">
     <div class="card">
       <div class="card-header bg-primary text-white">
         Location List
       </div>
       <div class="card-body">
-        <!-- Location list content here -->
+
         <table class="table table-bordered">
           <thead>
             <tr>
@@ -37,7 +37,6 @@
     </div>
   </div>
 
-  <!-- New Location Form -->
   <div class="col-6">
     <div class="card">
       <div class="card-header bg-primary text-white">
@@ -48,8 +47,20 @@
         <div class="row mb-3">
           <div class="col-6">
             <label for="lname" class="form-label">Location Name</label>
-            <input type="text" [(ngModel)]="newLocationObj.locationName"
-              class="form-control" id="lname">
+            <input type="text" #locationName="ngModel"
+              [(ngModel)]="newLocationObj.locationName"
+              class="form-control" id="lname" name="lname" minlength="5"
+              maxlength="10" required>
+              @if(locationName.touched ||locationName.dirty){
+              <div class="text-danger">
+              @if(locationName.errors?.['required']){
+              <span>This is required</span>
+              }
+              @if(locationName.errors?.['minlength']){
+                <span>Min length is 5 characters</span>
+              }
+            </div>
+            </div>
           </div>
 
           <div class="col-6">
@@ -82,4 +93,148 @@
       </div>
     </div>
   </div>
+</div> -->
+
+<div class="row mt-3">
+
+  <!-- Location List -->
+  <div class="col-6">
+    <div class="card">
+      <div class="card-header bg-primary text-white">
+        Location List
+      </div>
+      <div class="card-body">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Sr.No</th>
+              <th>Location Name</th>
+              <th>Code</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of locationArray; track $index) {
+            <tr>
+              <td>{{ $index + 1 }}</td>
+              <td>{{ item.locationName }}</td>
+              <td>{{ item.code }}</td>
+              <td>
+                <button class="btn btn-success btn-sm me-2"
+                  (click)="onEdit(item)">
+                  Edit
+                </button>
+                <button class="btn btn-danger btn-sm"
+                  (click)="onDelete(item.locationId)">
+                  Delete
+                </button>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- New Location Form -->
+  <div class="col-6">
+    <div class="card">
+      <div class="card-header bg-primary text-white">
+        New Location Form
+      </div>
+
+      <div class="card-body">
+        <form #locationForm="ngForm" novalidate>
+
+          <!-- Location Name -->
+          <div class="mb-3">
+            <label for="locationName" class="form-label">Location Name</label>
+
+            <input
+              type="text"
+              id="locationName"
+              class="form-control"
+              name="locationName"
+              [(ngModel)]="newLocationObj.locationName"
+              #locationName="ngModel"
+              required
+              minlength="5"
+              maxlength="10"
+              pattern="^[A-Za-z ]+$" />
+
+            <div class="text-danger small"
+              *ngIf="locationName.invalid && (locationName.dirty || locationName.touched)">
+              <div *ngIf="locationName.errors?.required">
+                Location Name is required
+              </div>
+              <div *ngIf="locationName.errors?.minlength">
+                Minimum 5 characters required
+              </div>
+              <div *ngIf="locationName.errors?.maxlength">
+                Maximum 10 characters allowed
+              </div>
+              <div *ngIf="locationName.errors?.pattern">
+                Only alphabets allowed
+              </div>
+            </div>
+          </div>
+
+          <!-- Location Code -->
+          <div class="mb-3">
+            <label for="code" class="form-label">Location Code</label>
+
+            <input
+              type="text"
+              id="code"
+              class="form-control"
+              for="code"
+              name="code"
+              [(ngModel)]="newLocationObj.code"
+              #code="ngModel"
+              required
+              minlength="2"
+              maxlength="5"
+              pattern="^[A-Z]{2,5}$" />
+
+            <div class="text-danger small"
+              *ngIf="code.invalid && (code.dirty || code.touched)">
+              <div *ngIf="code.errors?.required">
+                Code is required
+              </div>
+              <div *ngIf="code.errors?.pattern">
+                Only CAPITAL letters (2–5)
+              </div>
+            </div>
+          </div>
+
+          <!-- Buttons -->
+          <div class="row pt-3">
+            <div class="col-6">
+              <button
+                type="reset"
+                class="btn btn-secondary w-100"
+                (click)="resetForm()">
+                Reset
+              </button>
+            </div>
+
+            <div class="col-6">
+              <button
+                class="btn w-100"
+                [class.btn-success]="newLocationObj.locationId === 0"
+                [class.btn-warning]="newLocationObj.locationId !== 0"
+                [disabled]="locationForm.invalid"
+                (click)="newLocationObj.locationId === 0 ? onSaveLocation() : onUpdate()">
+                {{ newLocationObj.locationId === 0 ? 'Save Location' :
+                'Update Location' }}
+              </button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
 </div>
