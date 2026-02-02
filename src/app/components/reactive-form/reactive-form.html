@@ -1,0 +1,106 @@
+<div class="container mt-4">
+  <div class="row">
+
+    <!-- ================= VEHICLE CARDS (col-8) ================= -->
+    <div class="col-8">
+      <h4 class="mb-3">Available Vehicles</h4>
+
+      <div class="row">
+
+        <!-- Vehicle Card -->
+        @for(item of carList; track $index){
+        <div class="col-md-4 mb-3">
+          <div class="card h-100 shadow-sm">
+            <img [src]="item.carImage || 'assets/no-car.png'"
+              class="card-img-top" alt="Car Image">
+
+            <div class="card-body">
+              <h5
+                class="card-title">{{ item.brand }}</h5>
+              <p class="card-text mb-1"><strong>Model:</strong>
+                {{item.model}}</p>
+              <p class="card-text mb-1"><strong>Year:</strong> {{item.year}}</p>
+              <p class="card-text mb-1"><strong>Color:</strong>
+                {{item.color}}</p>
+              <p class="card-text mb-1"><strong>Rate:</strong>
+                {{item.dailyRate}} / day</p>
+              <p class="card-text"><strong>Reg No:</strong> {{item.regNo}}</p>
+            </div>
+
+            <div class="card-footer text-center">
+              <button class="btn btn-sm btn-primary me-2"
+                (click)="onEdit(item)">Edit</button>
+              <button class="btn btn-sm btn-danger"
+                (click)="onDelete(item.carId)">Delete</button>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+
+    <!-- ================= VEHICLE FORM (col-4) ================= -->
+    <div class="col-4">
+      <h4 class="mb-3">Add / Update Vehicle</h4>
+
+      <form [formGroup]="newCarForm">
+        <div class="mb-2">
+          <label class="form-label">Brand</label>
+          <input type="text" formControlName="brand" id="brand"
+            class="form-control"
+            placeholder="Enter Brand">
+        </div>
+
+        <div class="mb-2">
+          <label class="form-label">Model</label>
+          <input type="text" formControlName="model" id="model"
+            class="form-control"
+            placeholder="Enter Model">
+        </div>
+
+        <div class="mb-2">
+          <label class="form-label">Year</label>
+          <input type="number" formControlName="year" id="year"
+            class="form-control"
+            placeholder="Enter Year">
+        </div>
+
+        <div class="mb-2">
+          <label class="form-label">Color</label>
+          <input type="text" formControlName="color" id="color"
+            class="form-control"
+            placeholder="Enter Color">
+        </div>
+
+        <div class="mb-2">
+          <label class="form-label">Daily Rate</label>
+          <input type="number" formControlName="dailyRate" id="dailyRate"
+            class="form-control"
+            placeholder="Enter Daily Rate">
+        </div>
+
+        <div class="mb-2">
+          <label class="form-label">Car Image URL</label>
+          <input type="text" formControlName="carImage" id="carImage"
+            class="form-control"
+            placeholder="Enter Image URL">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Registration Number</label>
+          <input type="text" formControlName="regNo" id="regNo"
+            class="form-control"
+            placeholder="Enter Reg No">
+        </div>
+
+        <div class="d-grid gap-2">
+          <button type="button" (click)="onSaveCar()"
+            class="btn btn-success">Save</button>
+          <button type="button" (click)="resetForm()"
+            class="btn btn-secondary">Clear</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>

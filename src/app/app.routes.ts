@@ -10,6 +10,7 @@ import { OldAngular } from './components/old-angular/old-angular';
 import { GetApi } from './components/get-api/get-api';
 import { PostApi } from './components/post-api/post-api';
 import { CarMaster } from './components/car-master/car-master';
+import { ReactiveForm } from './components/reactive-form/reactive-form';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'admin', pathMatch: 'full' },
@@ -24,4 +25,5 @@ export const routes: Routes = [
   { path: 'getApi', component: GetApi },
   { path: 'postApi', component: PostApi },
   { path: 'carApi', component: CarMaster },
+  { path: 'reactiveForm', component: ReactiveForm },
 ];
