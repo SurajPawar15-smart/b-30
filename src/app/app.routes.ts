@@ -12,6 +12,7 @@ import { PostApi } from './components/post-api/post-api';
 import { CarMaster } from './components/car-master/car-master';
 import { ReactiveForm } from './components/reactive-form/reactive-form';
 import { LifeCycle } from './components/life-cycle/life-cycle';
+import { PageNotFound } from './components/page-not-found/page-not-found';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'admin', pathMatch: 'full' },
@@ -28,4 +29,5 @@ export const routes: Routes = [
   { path: 'carApi', component: CarMaster },
   { path: 'reactiveForm', component: ReactiveForm },
   { path: 'lCycle', component: LifeCycle },
+  { path: '**', component: PageNotFound },
 ];
