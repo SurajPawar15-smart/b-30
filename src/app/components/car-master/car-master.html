@@ -1,0 +1,121 @@
+<div class="row mt-3">
+  <!-- Car List -->
+  <div class="col-9">
+    <div class="card">
+      <div class="card-header bg-primary text-white">
+        Cars List
+      </div>
+      <div class="card-body">
+        <!-- Car list content here -->
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Sr.No</th>
+              <th>Brand</th>
+              <th>Model</th>
+              <th>Year</th>
+              <th>Color</th>
+              <th>DailyRate</th>
+
+              <th>RegNo</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for (item of carList; track $index) {
+            <tr>
+              <td>{{$index+1}}</td>
+              <td>{{ item.brand }}</td>
+              <td>{{ item.model }}</td>
+              <td>{{ item.year }}</td>
+              <td>{{ item.color }}</td>
+              <td>{{ item.dailyRate }}</td>
+
+              <td>{{ item.regNo }}</td>
+              <td>
+                <button class="btn btn-success"
+                  (click)="onEdit(item)">Edit</button>&nbsp;
+                <button class="btn btn-danger"
+                  (click)="onDelete(item.carId)">Delete</button>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- New Car Form -->
+  <div class="col-3">
+    <div class="card">
+      <div class="card-header bg-primary text-white">
+        New Car Form
+      </div>
+      <div class="card-body">
+        <div class="row mb-3">
+          <div class="col-6">
+            <label for="brand" class="form-label">Brand Name</label>
+            <input type="text" [(ngModel)]="carObj.brand"
+              class="form-control" id="brand">
+          </div>
+
+          <div class="col-6">
+            <label for="model" class="form-label">Model Name</label>
+            <input type="text" [(ngModel)]="carObj.model"
+              class="form-control" id="model">
+          </div>
+          <div class="col-6">
+            <label for="year" class="form-label">Year</label>
+            <input type="text" [(ngModel)]="carObj.year"
+              class="form-control" id="year">
+          </div>
+          <div class="col-6">
+            <label for="color" class="form-label">Color</label>
+            <input type="text" [(ngModel)]="carObj.color"
+              class="form-control" id="color">
+          </div>
+          <div class="col-6">
+            <label for="dailyRate" class="form-label">DailyRate </label>
+            <input type="text" [(ngModel)]="carObj.dailyRate"
+              class="form-control" id="dailyRate">
+          </div>
+
+          <div class="col-6">
+            <label for="regNo" class="form-label">RegNo</label>
+            <input type="text" [(ngModel)]="carObj.regNo"
+              class="form-control" id="regNo">
+          </div>
+        </div>
+
+        <div class="row pt-3">
+          <!-- <div class="col-6 ">
+            <button type="reset" class="btn btn-secondary me-2">
+              Reset Form
+            </button>
+          </div> -->
+          <div class="col-6 ">
+            <button type="reset" class="btn btn-secondary me-2">
+              Reset Form
+            </button>
+          </div>
+          <div class="col-6 ">
+            @if(carObj.carId==0){
+            <button type="submit" class="btn btn-success"
+              (click)="onSaveCar()">
+              Save Car
+            </button>
+            }@else{
+            <button type="submit" class="btn btn-warning"
+              (click)="updateCars()">
+              Update Car
+            </button>
+            }
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

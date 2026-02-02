@@ -9,6 +9,7 @@ import { AttDir } from './components/att-dir/att-dir';
 import { OldAngular } from './components/old-angular/old-angular';
 import { GetApi } from './components/get-api/get-api';
 import { PostApi } from './components/post-api/post-api';
+import { CarMaster } from './components/car-master/car-master';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'admin', pathMatch: 'full' },
@@ -22,4 +23,5 @@ export const routes: Routes = [
   { path: 'oldAng', component: OldAngular },
   { path: 'getApi', component: GetApi },
   { path: 'postApi', component: PostApi },
+  { path: 'carApi', component: CarMaster },
 ];
