@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { User } from '../../services/user';
 
 @Component({
   selector: 'app-admin',
@@ -11,8 +12,21 @@ import { Component } from '@angular/core';
 })
 export class admin {
   courseName: string = 'Samsun Laptop';
+  userList: any[] = [];
+  userService = inject(User);
 
   constructor() {
     console.log(this.courseName);
+  }
+
+  getUsers() {
+    this.userService.getJsonUser().subscribe({
+      next: (res: any) => {
+        this.userList = res;
+      },
+      error: (err) => {
+        console.error('Error fetching users', err);
+      },
+    });
   }
 }

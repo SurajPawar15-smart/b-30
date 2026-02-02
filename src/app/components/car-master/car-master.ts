@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Car } from '../../services/car';
 
 @Component({
   selector: 'app-car-master',
@@ -22,8 +23,9 @@ export class CarMaster {
     regNo: '',
   };
 
-  constructor() {
+  constructor(private CarService: Car) {
     this.getCars();
+    const role = this.CarService.loggedUserRole;
   }
 
   getCars() {
@@ -51,17 +53,26 @@ export class CarMaster {
       });
   }
   updateCars() {
-    this.http
-      .put('https://freeapi.miniprojectideas.com/api/CarRentalApp/UpdateCar', this.carObj)
-      .subscribe({
-        next: (res: any) => {
-          alert('Car Data Updated');
-          this.getCars();
-        },
-        error: (err: any) => {
-          alert('Cars updated failed ❌ ' + err.message);
-        },
-      });
+    // this.http
+    //   .put('https://freeapi.miniprojectideas.com/api/CarRentalApp/UpdateCar', this.carObj)
+    //   .subscribe({
+    //     next: (res: any) => {
+    //       alert('Car Data Updated');
+    //       this.getCars();
+    //     },
+    //     error: (err: any) => {
+    //       alert('Cars updated failed ❌ ' + err.message);
+    //     },
+    //   });
+    this.CarService.updateCar(this.carObj).subscribe({
+      next: (res: any) => {
+        alert('Car Data Updated');
+        this.getCars();
+      },
+      error: (err: any) => {
+        alert('Cars updated failed ❌ ' + err.message);
+      },
+    });
   }
 
   onEdit(data: any) {
